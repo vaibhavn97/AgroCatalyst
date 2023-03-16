@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const https = require('https');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
@@ -138,7 +139,29 @@ app.get('/crops', (req, res)=>{
             }
             else{
                 let crops = result.crops;
-                res.render("cropsInfo", {crops: crops});
+                
+                let cityName = req.user.location;
+                var appID = "12166c4882e0ab1ff59f3c9864b20917";
+                var units = "metric";
+                const url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=" + units + "&appid=" + appID;
+                https.get(url, (response) => {
+                    // console.log(response.statusCode);
+                    response.on("data", (data) => {
+                        const wetherData = JSON.parse(data);
+                        // console.log(wetherData);
+                        const tmp = wetherData.main.temp;
+                        const desc = wetherData.weather[0].description;
+                        // console.log(desc);
+                        const imgID = wetherData.weather[0].icon;
+                        var iconurl = "http://openweathermap.org/img/wn/" + imgID + "@2x.png";
+                        obj = {
+                            'temp': tmp,
+                            'cond': desc,
+                            'iurl': iconurl
+                        };
+                        res.render("cropsInfo", { crops: crops, whe: obj, cityName:req.user.location });
+                    });
+                });
             }
         })
     }
