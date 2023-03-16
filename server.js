@@ -45,10 +45,44 @@ passport.deserializeUser(UserModel.deserializeUser());
 const locationSchema = new mongoose.Schema({
     _id : Object,
     name: String,
-    crops: Array
+    crops:  [{
+        name: {
+          type: String,
+          required: true
+        },
+        introduction: {
+          type: String,
+          required: true
+        },
+        soil: {
+            type: String,
+            required: true
+        },
+        sowing: {
+            type: String,
+            required: true
+        },
+        fertilizers: {
+            type: String,
+            required: true
+        },
+        weed_management: {
+            type: String,
+            required: true
+        },
+        msp: {
+          type: String,
+          required: true
+        },
+        month:{
+            type: String,
+            required: true
+        }
+
+      }]
 })
 
-const locationModel = mongoose.model("locations1", locationSchema);
+const locationModel = mongoose.model("locations", locationSchema);
 
 
 app.get("/", (req, res)=>{
@@ -121,12 +155,36 @@ app.get('/logout', (req, res)=>{
 // Profile 
 app.get('/profile', (req, res)=>{
     if(req.isAuthenticated() && req.user.isStaff){
-        res.render('profile');
+        locationModel.findOne({name: req.user.location}, (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                let crops = result.crops;
+                res.render('profile', {'crops': crops});
+            }
+        }
+        );
     }
     else{
         res.redirect('/crops');
     }
 })
+app.post('/profile', (req, res)=>{
+    let cropName = req.body.cropName;
+    let price = req.body.price;
+    locationModel.findOneAndUpdate(
+        { 'name': req.user.location, 'crops.name': cropName },
+        { $set: { 'crops.$.msp': price } },
+        { new: true },
+        (err, doc)=>{
+
+        }
+    );
+    return res.redirect('crops');
+      
+})
+
 
 
 // Crops Handling

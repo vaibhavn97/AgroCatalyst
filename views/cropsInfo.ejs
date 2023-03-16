@@ -60,11 +60,28 @@
                                     <a class="img-card" href="">
                                         <img src="img/<%= crops[i].name %>.jpg" />
                                     </a>
+                                    <% let isProduct = (Number(crops[i].month) - (Number(new Date().getMonth())+1)  ); %>
                                     <div class="card-content">
                                         <h4 class="card-title">
-                                            <a>
-                                                <%= crops[i].name %>
-                                            </a>
+                                            <% if(isProduct>=0 && isProduct<=3){ %>
+                                            <div class="d-flex justify-content-between text-danger">
+                                                <a>
+                                                    <%= crops[i].name %>
+                                                </a>
+                                                <p>
+                                                    MSP- Rs. <%= crops[i].msp %>/-
+                                                </p>
+                                            </div>
+                                            <% } else{ %>
+                                                <div class="d-flex justify-content-between">
+                                                    <a>
+                                                        <%= crops[i].name %>
+                                                    </a>
+                                                    <p>
+                                                        MSP- Rs. <%= crops[i].msp %>/-
+                                                    </p>
+                                                </div>
+                                            <% } %>
                                         </h4>
                                         <div>
                                             <div class="my-1">
