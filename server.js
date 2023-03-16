@@ -30,7 +30,8 @@ const UserSchema = new mongoose.Schema({
     location: String,
     password : String,
     phonenumber: Number,
-    harvest: Array
+    harvest: Array,
+    isStaff: Boolean
 })
 UserSchema.plugin(passportLocalMongoose);
 
@@ -77,6 +78,9 @@ app.post('/login', (req, res)=>{
         }
         else{
             passport.authenticate('local')(req, res, ()=>{
+                if(req.user.isStaff){
+                    return res.redirect('/profile');
+                }
                 res.redirect('/crops')
             })
         }
@@ -113,7 +117,15 @@ app.get('/logout', (req, res)=>{
     });
 
 })
-
+// Profile 
+app.get('/profile', (req, res)=>{
+    if(req.isAuthenticated() && req.user.isStaff){
+        res.render('profile');
+    }
+    else{
+        res.redirect('/crops');
+    }
+})
 
 
 // Crops Handling
