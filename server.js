@@ -70,6 +70,10 @@ const locationSchema = new mongoose.Schema({
             type: String,
             required: true
         },
+        yield:{
+            type: String,
+            required: true
+        },
         msp: {
           type: String,
           required: true
@@ -77,6 +81,10 @@ const locationSchema = new mongoose.Schema({
         month:{
             type: String,
             required: true
+        },
+        schedule:{
+            type: Object,
+            require: true
         }
 
       }]
