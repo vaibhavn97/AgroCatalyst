@@ -1,7 +1,8 @@
 
 # AgroCatalyst
 
-The Web App is all in one expense tracking platform for user seeking their daily expenditure
+The Web App is all in one expense tracking platform for user seeking their daily expenditure.
+
 
 
 
