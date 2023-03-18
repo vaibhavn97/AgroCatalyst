@@ -6,7 +6,6 @@ The Web App is all in one expense tracking platform for user seeking their daily
 
 
 
-
 ## Tech Stack
 
 **Client:** HTML, CSS, Bootstrap
