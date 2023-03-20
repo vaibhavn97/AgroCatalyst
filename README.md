@@ -1,8 +1,7 @@
 
 # AgroCatalyst
 
-The Web App is all in one expense tracking platform for user seeking their daily expenditure.
-
+This WebPage Suggest and Guide Farmers to choose crops based on their locations, providing current market rates and giving them roadmap of crops to be grown as per season.
 
 
 
@@ -16,10 +15,19 @@ The Web App is all in one expense tracking platform for user seeking their daily
 ## Screenshots
 
 **Landing Page:**
+![image](https://drive.google.com/uc?export=view&id=1nVDXsvl5btfZA_eSEIM-KOLC-dQbDs2t)
 
-**DashBoard:**
+![image](https://drive.google.com/uc?export=view&id=1ym3iMgYfS4LSKPgG0Tnh2OCb5s_CQWM5)
 
-**Visual Charts:**
+** Login/ Registration Page
+![image](https://drive.google.com/uc?export=view&id=16IWwVpVyuXwSWpEAwNa30gvnQ3MNEcU3)
+
+**Crops Suggestion Page:**
+![image](https://drive.google.com/uc?export=view&id=1eakfDE7g-T4ozBevXVNkiT5wudye1OSU)
+
+**Road Map Page:**
+
+![image](https://drive.google.com/uc?export=view&id=1sRlSYeP4C_HcnuNEr4pyW0sWHAkK3c4J)
 
 
 ## Authors
